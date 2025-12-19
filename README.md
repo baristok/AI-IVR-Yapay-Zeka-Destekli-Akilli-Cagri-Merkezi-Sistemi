@@ -3,12 +3,14 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
-  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/PHP-8.4-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
   <img src="https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
   <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis">
   <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/Status-Active%20Development-yellow?style=for-the-badge" alt="Status">
   <img src="https://img.shields.io/badge/AI-Gemini%202.5%20Flash-blue?style=for-the-badge" alt="AI">
+  <img src="https://img.shields.io/badge/Real--time-Pusher-FF6B6B?style=for-the-badge&logo=pusher&logoColor=white" alt="Pusher">
 </p>
 
 <p align="center">
@@ -28,7 +30,7 @@ Sistem, **Google Gemini AI**, **Google Cloud Speech-to-Text (STT)** ve **Google 
 
 Modern web teknolojileri kullanılarak geliştirilen sistem, esnek modüler mimarisi, çok dilli desteği, güçlü rol-yetki yönetimi ve yapay zeka entegrasyonu ile ölçeklenebilir bir çözüm sunmaktadır.
 
-> **✅ Güncel Durum:** Sistem aktif geliştirme aşamasında olup, temel AI konuşma özellikleri tamamlanmıştır. TTS/STT entegrasyonları ve gerçek zamanlı konuşma simülasyonu çalışır durumdadır.
+> **✅ Güncel Durum:** Sistem aktif geliştirme aşamasında olup, **gerçek zamanlı streaming AI konuşma sistemi** tamamlanmıştır. TTS/STT entegrasyonları, **Pusher ile real-time broadcasting**, **Redis queue sistemi**, **Supervisor ile otomatik queue worker yönetimi** ve **performans optimizasyonları** (TTS cache, paralel işleme) çalışır durumdadır.
 
 ### 🚀 Girişim Potansiyeli
 
@@ -86,10 +88,13 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 ### ✅ Önerilen ve Uygulanan Çözümler
 
 1. **Yapay Zeka Destekli IVR Sistemi** ✅ **TAMAMLANDI**
-   - ✅ Google Gemini AI ile doğal dil işleme
-   - ✅ Gerçek zamanlı konuşma döngüsü
+   - ✅ Google Gemini 2.5 Flash ile doğal dil işleme
+   - ✅ **Gerçek zamanlı streaming konuşma döngüsü** (Server-Sent Events)
+   - ✅ **Real-time broadcasting** (Pusher ile anlık güncellemeler)
    - ✅ Senaryo bazlı konuşma yönetimi
    - ✅ Bağlam takibi ve konuşma geçmişi yönetimi
+   - ✅ **Paralel TTS işleme** (performans optimizasyonu)
+   - ✅ **TTS cache sistemi** (~600x hız artışı)
    - 🔄 Dinamik menü yapılandırması - Geliştiriliyor
 
 2. **Ses Teknolojileri Entegrasyonu** ✅ **TAMAMLANDI**
@@ -102,8 +107,10 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 
 3. **Modüler ve Ölçeklenebilir Mimari** ✅ **TAMAMLANDI**
    - ✅ Modüler mimari tabanlı yaklaşım (nwidart/laravel-modules)
-   - ✅ TestSimulasyonu modülü (TTS/STT test ve gerçek zamanlı konuşma)
+   - ✅ TestSimulasyonu modülü (TTS/STT test ve gerçek zamanlı streaming konuşma)
    - ✅ Users modülü (Kullanıcı yönetimi)
+   - ✅ **Redis queue sistemi** (yüksek performanslı job işleme)
+   - ✅ **Supervisor ile otomatik queue worker yönetimi** (7/24 stabil çalışma)
    - ✅ Kolay entegrasyon desteği (REST API, Webhooks)
    - ✅ Bulut altyapı uyumluluğu
 
@@ -130,10 +137,12 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 ┌─────────────────────────────────────┐
 │     Laravel 12.x Framework         │
 ├─────────────────────────────────────┤
-│  ✅ PHP 8.2+                        │
+│  ✅ PHP 8.4                         │
 │  ✅ MySQL 8.0                       │
+│  ✅ Redis (Queue & Cache)           │
 │  ✅ nwidart/laravel-modules         │
 │  ✅ Spatie Laravel Permission       │
+│  ✅ Supervisor (Queue Worker)        │
 └─────────────────────────────────────┘
 ```
 
@@ -142,10 +151,25 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 ┌─────────────────────────────────────┐
 │     Google Cloud Services           │
 ├─────────────────────────────────────┤
-│  ✅ Google Gemini 2.5 Flash Lite   │
+│  ✅ Google Gemini 2.5 Flash         │
+│  ✅ Gemini Streaming (SSE)           │
 │  ✅ Google Cloud TTS (Text-to-Speech)│
 │  ✅ Google Cloud STT V2 (Speech-to-Text)│
 │  ✅ SSML Preprocessor               │
+│  ✅ TTS Cache System                │
+└─────────────────────────────────────┘
+```
+
+#### **Real-time & Infrastructure** ✅ Tamamlandı
+```
+┌─────────────────────────────────────┐
+│     Real-time Services              │
+├─────────────────────────────────────┤
+│  ✅ Pusher (Broadcasting)           │
+│  ✅ Laravel Echo (Frontend)          │
+│  ✅ Redis Queue System               │
+│  ✅ Supervisor (Auto Queue Worker)   │
+│  ✅ Event Broadcasting               │
 └─────────────────────────────────────┘
 ```
 
@@ -203,43 +227,68 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 - 🔄 Geliştiriliyor
 - 📅 Planlanıyor
 
-### Gerçek Zamanlı Konuşma Mimarisi
+### Gerçek Zamanlı Streaming Konuşma Mimarisi
 
 ```
-┌──────────────┐
-│  Kullanıcı   │
-│  (Tarayıcı)  │
-└──────┬───────┘
-       │
-       │ 1. Ses Kaydı (MediaRecorder)
-       ▼
-┌─────────────────────────────────────┐
-│  TestSimulasyonuController           │
-│  (API Endpoints)                     │
-└──────┬───────────────────────────────┘
-       │
-       │ 2. processConversationTurn()
-       ▼
-┌─────────────────────────────────────┐
-│  ConversationEngine                 │
-│  (Konuşma Motoru)                   │
-└──────┬───────────────────────────────┘
-       │
-       ├─► 3. GoogleSttService
-       │   (Ses → Metin, V2 API)
-       │
-       ├─► 4. GoogleGeminiService
-       │   (AI Yanıt Üretimi)
-       │
-       └─► 5. GoogleTtsService
-           (Metin → Ses, SSML)
-       │
-       │ 6. Response (Ses + Metin)
-       ▼
-┌──────────────┐
-│  Kullanıcı   │
-│  (Hoparlör)  │
-└──────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                    CLIENT LAYER (Browser)                    │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │ MediaRecorder│  │ Laravel Echo │  │ Audio Player │      │
+│  │ (Ses Kaydı)  │  │ (Pusher)     │  │ (Chunk Play) │      │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘      │
+└─────────┼─────────────────┼─────────────────┼──────────────┘
+          │                 │                 │
+          │ 1. Audio Upload │                 │
+          ▼                 │                 │
+┌─────────────────────────────────────────────────────────────┐
+│              APPLICATION LAYER (Laravel)                      │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  TestSimulasyonuController                            │   │
+│  │  processConversationTurnStreaming()                    │   │
+│  └──────────────┬───────────────────────────────────────┘   │
+│                 │                                            │
+│                 │ 2. Dispatch OrchestrateConversationJob     │
+│                 ▼                                            │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  Redis Queue (high priority)                           │   │
+│  │  OrchestrateConversationJob                           │   │
+│  └──────────────┬───────────────────────────────────────┘   │
+│                 │                                            │
+│                 ├─► 3. GoogleSttService                      │
+│                 │   (Ses → Metin, V2 API)                   │
+│                 │   Event: SttProcessingCompleted            │
+│                 │                                            │
+│                 ├─► 4. GoogleGeminiStreamingService         │
+│                 │   (AI Streaming, SSE Parsing)             │
+│                 │   Event: AiChunkReceived (her chunk)       │
+│                 │                                            │
+│                 └─► 5. ProcessTtsChunkJob (Paralel)         │
+│                     (Metin → Ses, Cache Check)                │
+│                     Event: TtsChunkReady (her chunk)         │
+│                 │                                            │
+│                 │ 6. Event: ConversationTurnCompleted        │
+│                 ▼                                            │
+└─────────────────────────────────────────────────────────────┘
+          │
+          │ Real-time Events (Pusher Broadcasting)
+          ▼
+┌─────────────────────────────────────────────────────────────┐
+│              BROADCASTING LAYER (Pusher)                     │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │ Private     │  │ Event        │  │ Frontend     │      │
+│  │ Channels    │  │ Broadcasting │  │ Updates      │      │
+│  └─────────────┘  └──────────────┘  └──────────────┘      │
+└─────────────────────────────────────────────────────────────┘
+          │
+          │ WebSocket/HTTP Long Polling
+          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    CLIENT LAYER (Browser)                    │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │ Event        │  │ Audio        │  │ UI Updates   │      │
+│  │ Listeners    │  │ Chunk Fetch  │  │ (Real-time)  │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -248,18 +297,23 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 
 ### 🤖 Yapay Zeka ve Konuşma Özellikleri ✅ **TAMAMLANDI**
 
-#### **Gerçek Zamanlı AI Konuşma Sistemi** ✅
-- ✅ Google Gemini 2.5 Flash Lite entegrasyonu
-- ✅ Gerçek zamanlı konuşma döngüsü (STT → AI → TTS)
+#### **Gerçek Zamanlı Streaming AI Konuşma Sistemi** ✅
+- ✅ Google Gemini 2.5 Flash entegrasyonu
+- ✅ **Gemini Streaming API** (Server-Sent Events parsing)
+- ✅ **Real-time broadcasting** (Pusher ile anlık güncellemeler)
+- ✅ Gerçek zamanlı konuşma döngüsü (STT → AI Streaming → TTS Paralel)
 - ✅ Senaryo bazlı konuşma yönetimi
   - ✅ Müşteri Desteği (customer_support)
   - ✅ Ödeme İşlemleri (billing)
   - ✅ Randevu Talebi (appointment)
   - ✅ Teknik Destek (technical_support)
 - ✅ Konuşma geçmişi ve bağlam takibi
-- ✅ Session yönetimi (Cache tabanlı)
-- ✅ Performans metrikleri (STT, AI, TTS süreleri)
+- ✅ Session yönetimi (Redis Cache tabanlı)
+- ✅ **Performans metrikleri** (STT: ~1.3s, AI: ~1.2s, TTS: 0ms paralel)
+- ✅ **Paralel TTS işleme** (job-based, non-blocking)
+- ✅ **TTS cache sistemi** (~600x hız artışı, tekrarlanan cümleler için)
 - ✅ Kullanıcı dostu arayüz (TestSimulasyonu modülü)
+- ✅ **Voice Activity Detection (VAD)** - Otomatik ses algılama
 
 #### **Text-to-Speech (TTS)** ✅
 - ✅ Google Cloud TTS entegrasyonu
@@ -274,6 +328,9 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
   - ✅ Kısaltma telaffuzları (IVR, CRM, API, vb.)
 - ✅ MP3 audio encoding
 - ✅ Özelleştirilebilir konuşma hızı ve ton
+- ✅ **TTS Cache Sistemi** (Redis tabanlı, tekrarlanan cümleler için ~600x hız)
+- ✅ **Paralel TTS işleme** (Queue job'ları ile non-blocking)
+- ✅ **Chunk-based audio delivery** (Pusher 10KB limit bypass)
 - ✅ Test arayüzü (TestSimulasyonu modülü)
 
 #### **Speech-to-Text (STT)** ✅
@@ -307,9 +364,12 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 - 📅 DTMF (tuş tonu) algılama - Planlanıyor
 
 ### 📊 Analitik ve Raporlama
-- ✅ Gerçek zamanlı konuşma metrikleri (STT, AI, TTS süreleri)
+- ✅ **Gerçek zamanlı konuşma metrikleri** (STT, AI, TTS süreleri)
+- ✅ **Performans analiz raporları** (detaylı log analizi)
 - ✅ Konuşma geçmişi görüntüleme
 - ✅ Performans logları
+- ✅ **TTS cache hit/miss istatistikleri**
+- ✅ **Queue worker durum izleme**
 - 🔄 Temel dashboard - Geliştiriliyor
 - 📅 Çağrı istatistikleri - Planlanıyor
 - 📅 Gerçek zamanlı metrikler dashboard - Planlanıyor
@@ -327,8 +387,11 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 ### 🔧 Modüler Mimari
 - ✅ nwidart/laravel-modules entegrasyonu
 - ✅ Users modülü (temel CRUD, rol/izin yönetimi)
-- ✅ TestSimulasyonu modülü (TTS/STT test, AI konuşma simülasyonu)
+- ✅ TestSimulasyonu modülü (TTS/STT test, **streaming AI konuşma simülasyonu**)
 - ✅ Bağımsız modül geliştirme altyapısı
+- ✅ **Queue Worker otomasyonu** (Supervisor ile 7/24 çalışma)
+- ✅ **Redis entegrasyonu** (Queue ve Cache)
+- ✅ **Event Broadcasting sistemi** (Pusher ile real-time)
 - 🔄 IVR core modülü - Geliştirme aşamasında
 - 📅 API modülü - Planlanıyor
 
@@ -361,6 +424,19 @@ GOOGLE_CLOUD_PROJECT_ID=ivr-sistemi
 
 # Gemini AI
 GEMINI_API_KEY=your-gemini-api-key-here
+
+# Broadcasting (Pusher)
+BROADCAST_CONNECTION=pusher
+PUSHER_APP_ID=your-pusher-app-id
+PUSHER_APP_KEY=your-pusher-app-key
+PUSHER_APP_SECRET=your-pusher-app-secret
+PUSHER_APP_CLUSTER=your-pusher-cluster
+
+# Queue & Cache (Redis)
+QUEUE_CONNECTION=redis
+CACHE_STORE=redis
+REDIS_HOST=redis
+REDIS_PORT=6379
 ```
 
 ### Test Simülasyonu Kullanımı
@@ -380,12 +456,51 @@ GEMINI_API_KEY=your-gemini-api-key-here
    - Konuşun
    - Tekrar tıklayın - transkripsiyon görünecek
 
-4. **Gerçek Zamanlı AI Konuşma:**
+4. **Gerçek Zamanlı Streaming AI Konuşma:**
    - Senaryo seçin (Müşteri Desteği, Ödeme, Randevu)
    - Yeşil telefon butonuna tıklayın
    - AI selamlama mesajını dinleyin
-   - Mikrofon butonuna basıp konuşun
-   - AI yanıtını dinleyin ve konuşmaya devam edin
+   - **VAD (Voice Activity Detection)** otomatik olarak aktif
+   - Konuşmaya başlayın (otomatik algılama)
+   - **Real-time AI chunk'ları** ekranda görünür
+   - **Paralel TTS işleme** ile ses anında hazır
+   - Konuşmaya devam edin (döngüsel)
+
+---
+
+## ⚡ Performans Metrikleri
+
+### 🎯 Gerçek Zamanlı Konuşma Performansı
+
+Sistem, **production-ready** performans göstermektedir:
+
+| Metrik | Ortalama | Min | Max | Durum |
+|--------|----------|-----|-----|-------|
+| **STT Time** | **~1,350ms** | 1,036ms | 1,742ms | ✅ İyi |
+| **AI Time** | **~1,178ms** | 889ms | 1,790ms | ✅ Çok İyi |
+| **TTS Time** | **0ms** | 0ms | 0ms | ✅ Mükemmel (Paralel) |
+| **Total Time** | **~2,631ms** | 2,012ms | 3,661ms | ✅ İyi |
+
+### 🚀 TTS Cache Performansı
+
+**Cache Hit (Tekrarlanan Cümleler):**
+- ⚡ Ortalama: **1.43ms** (1-2ms arası)
+- ⚡ Hız: **~600x daha hızlı** cache miss'e göre
+- ⚡ Cache Hit Oranı: **%25** (tekrarlanan cümleler için)
+
+**Cache Miss (Yeni Cümleler):**
+- ⏱️ Ortalama: **856ms** (405-1863ms arası)
+- ⏱️ Metin uzunluğuna göre değişken
+
+### ✅ Sistem Durumu
+
+- ✅ **Queue Worker:** Otomatik çalışıyor (Supervisor ile 7/24)
+- ✅ **Job İşleme:** Hızlı ve stabil
+- ✅ **Cache Sistemi:** Çok etkili (~600x hız artışı)
+- ✅ **Streaming:** Real-time çalışıyor
+- ✅ **Paralel İşleme:** TTS job'ları non-blocking
+
+**Detaylı performans raporu için:** `PERFORMANS_ANALIZ_RAPORU.md`
 
 ---
 
@@ -394,10 +509,12 @@ GEMINI_API_KEY=your-gemini-api-key-here
 ### Araştırma Konuları
 
 1. **Yapay Zeka Destekli Konuşma Sistemleri**
-   - Google Gemini AI entegrasyonu
+   - Google Gemini 2.5 Flash entegrasyonu
+   - **Streaming AI** (Server-Sent Events parsing)
    - Doğal dil işleme (NLP) uygulamaları
    - Konuşma bağlamı yönetimi
    - Senaryo bazlı AI kişilik geliştirme
+   - **Real-time broadcasting** mimarileri
 
 2. **Ses Teknolojileri Entegrasyonu**
    - Google Cloud TTS/STT API kullanımı
@@ -421,6 +538,14 @@ GEMINI_API_KEY=your-gemini-api-key-here
    - Laravel'de RBAC implementasyonu
    - Dinamik izin yönetimi
    - Performans optimizasyonu
+
+6. **Real-time Sistemler ve Queue Yönetimi**
+   - Laravel Queue sistemi (Redis driver)
+   - Supervisor ile process yönetimi
+   - Pusher broadcasting entegrasyonu
+   - Event-driven architecture
+   - Paralel işleme ve performans optimizasyonu
+   - Cache stratejileri (TTS cache sistemi)
 
 ### Kullanılan Metodoloji
 
@@ -454,10 +579,6 @@ GEMINI_API_KEY=your-gemini-api-key-here
 - [Google Gemini API](https://ai.google.dev/docs)
 
 ### Proje Dokümantasyonu
-- `SPEECH_INTEGRATION_README.md` - TTS/STT entegrasyon detayları
-- `REALTIME_CONVERSATION_README.md` - Gerçek zamanlı AI konuşma sistemi rehberi
-- `LOCALIZATION_README.md` - Çok dilli destek rehberi
-
 ---
 
 ## 📄 Lisans
@@ -487,7 +608,7 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 > **📅 Proje Dönemi:** 2025-2026 Güz Dönemi  
 > **🎯 Bitirme Projesi Teslimi:** Ocak 2026  
 > **🚀 SaaS Lansmanı Hedefi:** Mayıs 2026  
-> **✅ İlerleme:** ~%65
+> **✅ İlerleme:** ~%75
 
 ### Tamamlanan Özellikler (✅)
 - ✅ Kullanıcı yönetimi ve authentication
@@ -496,11 +617,18 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 - ✅ Modüler mimari altyapısı
 - ✅ Google Cloud TTS entegrasyonu
 - ✅ Google Cloud STT V2 entegrasyonu
-- ✅ Google Gemini AI entegrasyonu
-- ✅ Gerçek zamanlı AI konuşma sistemi
-- ✅ TestSimulasyonu modülü (TTS/STT test ve AI konuşma)
+- ✅ Google Gemini 2.5 Flash entegrasyonu
+- ✅ **Gerçek zamanlı streaming AI konuşma sistemi**
+- ✅ **Pusher real-time broadcasting**
+- ✅ **Redis queue sistemi**
+- ✅ **Supervisor ile otomatik queue worker yönetimi**
+- ✅ **TTS cache sistemi** (~600x performans artışı)
+- ✅ **Paralel TTS işleme** (non-blocking)
+- ✅ TestSimulasyonu modülü (TTS/STT test ve streaming AI konuşma)
 - ✅ SSML ön işleme sistemi
 - ✅ Senaryo bazlı konuşma yönetimi
+- ✅ **Voice Activity Detection (VAD)**
+- ✅ **Performans metrikleri ve analiz**
 
 ### Geliştirilmekte Olan Özellikler (🔄)
 - 🔄 IVR akış tasarımcısı
@@ -541,6 +669,12 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## 📝 Notlar
 
-**Güncelleme Tarihi:** Kasım 2025  
-**Versiyon:** 2.0.0  
-**Son Güncelleme:** AI konuşma sistemi ve TTS/STT entegrasyonları tamamlandı. TestSimulasyonu modülü aktif.
+**Güncelleme Tarihi:** Aralık 2025  
+**Versiyon:** 2.5.0  
+**Son Güncelleme:** 
+- ✅ Gerçek zamanlı streaming AI konuşma sistemi tamamlandı
+- ✅ Pusher real-time broadcasting entegrasyonu
+- ✅ Redis queue sistemi ve Supervisor otomasyonu
+- ✅ TTS cache sistemi ve paralel işleme optimizasyonları
+- ✅ Performans metrikleri: STT ~1.3s, AI ~1.2s, TTS 0ms (paralel)
+- ✅ TestSimulasyonu modülü aktif ve production-ready
