@@ -30,7 +30,7 @@ Sistem, **Google Gemini AI**, **Google Cloud Speech-to-Text (STT)** ve **Google 
 
 Modern web teknolojileri kullanılarak geliştirilen sistem, esnek modüler mimarisi, çok dilli desteği, güçlü rol-yetki yönetimi ve yapay zeka entegrasyonu ile ölçeklenebilir bir çözüm sunmaktadır.
 
-> **✅ Güncel Durum:** Sistem aktif geliştirme aşamasında olup, **gerçek zamanlı streaming AI konuşma sistemi** tamamlanmıştır. TTS/STT entegrasyonları, **Pusher ile real-time broadcasting**, **Redis queue sistemi**, **Supervisor ile otomatik queue worker yönetimi** ve **performans optimizasyonları** (TTS cache, paralel işleme) çalışır durumdadır.
+> **✅ Güncel Durum:** Sistem aktif geliştirme aşamasında olup, **gerçek zamanlı streaming AI konuşma sistemi** tamamlanmıştır. TTS/STT entegrasyonları, **Pusher ile real-time broadcasting**, **Redis queue sistemi**, **Supervisor ile otomatik queue worker yönetimi** ve **performans optimizasyonları** (TTS cache, paralel işleme) çalışır durumdadır. **CallCenter modülü** (arama yönetimi, telefon numarası yönetimi, arayan eşleştirme, istatistikler) ve **AiAgent modülü** (AI Agent CRUD, durum yönetimi, capabilities) tamamlanmıştır.
 
 ### 🚀 Girişim Potansiyeli
 
@@ -109,6 +109,8 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
    - ✅ Modüler mimari tabanlı yaklaşım (nwidart/laravel-modules)
    - ✅ TestSimulasyonu modülü (TTS/STT test ve gerçek zamanlı streaming konuşma)
    - ✅ Users modülü (Kullanıcı yönetimi)
+   - ✅ **CallCenter modülü** (Arama yönetimi, telefon numarası yönetimi, arayan eşleştirme, istatistikler, Excel export/import)
+   - ✅ **AiAgent modülü** (AI Agent CRUD, durum yönetimi, capabilities, system prompt yönetimi)
    - ✅ **Redis queue sistemi** (yüksek performanslı job işleme)
    - ✅ **Supervisor ile otomatik queue worker yönetimi** (7/24 stabil çalışma)
    - ✅ Kolay entegrasyon desteği (REST API, Webhooks)
@@ -200,6 +202,14 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 │  │   Auth      │  │   Users     │  │ TestSim     │       │
 │  │  Module ✅  │  │  Module ✅  │  │  Module ✅  │       │
 │  └─────────────┘  └─────────────┘  └─────────────┘       │
+│  ┌─────────────┐  ┌─────────────┐                        │
+│  │ CallCenter  │  │  AiAgent    │                        │
+│  │  Module ✅  │  │  Module ✅  │                        │
+│  └─────────────┘  └─────────────┘                        │
+│  ┌─────────────┐  ┌─────────────┐                        │
+│  │   IVR       │  │   Reports   │                        │
+│  │  Module 🔄  │  │  Module 📅  │                        │
+│  └─────────────┘  └─────────────┘                        │
 │  ┌──────────────────────────────────────────────┐       │
 │  │         AI & Speech Services Layer           │       │
 │  │  ✅ ConversationEngine (Konuşma Motoru)       │       │
@@ -208,10 +218,6 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 │  │  ✅ GoogleSttService (Ses Tanıma)           │       │
 │  │  ✅ SsmlPreprocessor (SSML İşleme)            │       │
 │  └──────────────────────────────────────────────┘       │
-│  ┌─────────────┐  ┌─────────────┐                        │
-│  │   IVR       │  │   Reports   │                        │
-│  │  Module 🔄  │  │  Module 📅  │                        │
-│  └─────────────┘  └─────────────┘                        │
 └────────────────────────┬─────────────────────────────────┘
                          │
                          ▼
@@ -353,11 +359,69 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 - 🔄 Çok faktörlü kimlik doğrulama (2FA) - Geliştiriliyor
 - 📅 API token yönetimi - Planlanıyor
 
-### 📞 IVR Yönetimi (Core Modülü)
+### 📞 CallCenter Modülü ✅ **TAMAMLANDI**
+- ✅ **Arama Yönetimi (Call Management)**
+  - ✅ Gelen arama kaydı ve yönlendirme
+  - ✅ Arama durumu takibi (ringing, in-progress, completed, busy, no-answer, failed)
+  - ✅ Arama süresi takibi (duration, wait_time, talk_time)
+  - ✅ Arama detay sayfası (timeline, transcript, notes, events)
+  - ✅ Arama filtreleme (telefon, tarih, durum, agent)
+  - ✅ Timeline görünümü (günlük gruplandırma)
+  - ✅ Ses kaydı indirme
+- ✅ **Telefon Numarası Yönetimi (IncomingPhoneNumber)**
+  - ✅ Telefon numarası CRUD işlemleri
+  - ✅ Varsayılan AI Agent atama
+  - ✅ Aktif/pasif durum yönetimi
+  - ✅ Telefon numarası istatistikleri
+- ✅ **Arayan Eşleştirme (CallerMapping)**
+  - ✅ Pattern-based routing (regex desteği)
+  - ✅ Öncelik seviyesi yönetimi (priority level)
+  - ✅ AI Agent otomatik atama
+  - ✅ Excel import/export
+  - ✅ Toplu eşleştirme yönetimi
+- ✅ **İstatistikler ve Raporlama**
+  - ✅ Günlük/haftalık/aylık istatistikler
+  - ✅ Arama trend grafikleri
+  - ✅ Agent performans metrikleri
+  - ✅ Saatlik dağılım analizi
+  - ✅ Excel export (filtrelenmiş aramalar)
+- ✅ **AI Agent Entegrasyonu**
+  - ✅ Call-AiAgent ilişkisi
+  - ✅ Otomatik agent atama
+  - ✅ Agent bazlı filtreleme
+- 📅 Twilio entegrasyonu - Planlanıyor (webhook handler'lar hazır)
+- 📅 Giden aramalar (Outbound Calls) - Planlanıyor
+
+### 🤖 AiAgent Modülü ✅ **TAMAMLANDI**
+- ✅ **AI Agent CRUD İşlemleri**
+  - ✅ Agent oluşturma, düzenleme, silme
+  - ✅ Agent listesi ve detay görüntüleme
+  - ✅ Agent kopyalama (duplicate) özelliği
+- ✅ **Agent Durum Yönetimi**
+  - ✅ Durum seçenekleri (active, inactive, testing)
+  - ✅ Durum toggle işlemi
+  - ✅ Durum bazlı filtreleme
+- ✅ **Agent Konfigürasyonu**
+  - ✅ System prompt yönetimi
+  - ✅ Greeting message (karşılama mesajı)
+  - ✅ Closing message (kapanış mesajı)
+  - ✅ Tone style (professional, friendly, technical, casual)
+  - ✅ Capabilities yönetimi (conversation, qa, record, note, transfer, appointment, api_query)
+  - ✅ Priority level (1-5 arası)
+  - ✅ Category ve description
+  - ✅ Avatar seçimi
+- ✅ **CallCenter Entegrasyonu**
+  - ✅ Call-AiAgent ilişkisi
+  - ✅ Agent bazlı arama filtreleme
+  - ✅ Agent performans metrikleri
+
+### 📞 IVR Yönetimi (Core Özellikler)
 - ✅ TTS (Text-to-Speech) entegrasyonu - **TAMAMLANDI**
 - ✅ STT (Speech-to-Text) entegrasyonu - **TAMAMLANDI**
 - ✅ Gerçek zamanlı AI konuşma simülasyonu - **TAMAMLANDI**
 - ✅ TestSimulasyonu modülü (TTS/STT test ve AI konuşma) - **TAMAMLANDI**
+- ✅ CallCenter modülü (Arama yönetimi) - **TAMAMLANDI**
+- ✅ AiAgent modülü (AI Agent yönetimi) - **TAMAMLANDI**
 - 🔄 IVR akış tasarımcısı - Geliştiriliyor
 - 📅 Dinamik menü yapılandırması - Planlanıyor
 - 📅 Çağrı yönlendirme sistemi - Planlanıyor
@@ -370,11 +434,15 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 - ✅ Performans logları
 - ✅ **TTS cache hit/miss istatistikleri**
 - ✅ **Queue worker durum izleme**
+- ✅ **CallCenter istatistikleri** (günlük/haftalık/aylık)
+- ✅ **Arama trend grafikleri** (günlük dağılım)
+- ✅ **Agent performans metrikleri**
+- ✅ **Saatlik arama dağılım analizi**
+- ✅ **Excel export** (filtrelenmiş aramalar)
 - 🔄 Temel dashboard - Geliştiriliyor
-- 📅 Çağrı istatistikleri - Planlanıyor
 - 📅 Gerçek zamanlı metrikler dashboard - Planlanıyor
-- 📅 Excel/PDF export - Planlanıyor
-- 📅 Grafik görselleştirme - Planlanıyor
+- 📅 PDF export - Planlanıyor
+- 📅 Gelişmiş grafik görselleştirme - Planlanıyor
 
 ### 🌍 Çok Dil Desteği
 - ✅ Türkçe arayüz
@@ -388,6 +456,8 @@ Sistem, **SaaS (Software as a Service)** modeline uygun olarak geliştirilmekte 
 - ✅ nwidart/laravel-modules entegrasyonu
 - ✅ Users modülü (temel CRUD, rol/izin yönetimi)
 - ✅ TestSimulasyonu modülü (TTS/STT test, **streaming AI konuşma simülasyonu**)
+- ✅ **CallCenter modülü** (Arama yönetimi, telefon numarası yönetimi, arayan eşleştirme, istatistikler)
+- ✅ **AiAgent modülü** (AI Agent CRUD, durum yönetimi, capabilities)
 - ✅ Bağımsız modül geliştirme altyapısı
 - ✅ **Queue Worker otomasyonu** (Supervisor ile 7/24 çalışma)
 - ✅ **Redis entegrasyonu** (Queue ve Cache)
@@ -608,7 +678,7 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 > **📅 Proje Dönemi:** 2025-2026 Güz Dönemi  
 > **🎯 Bitirme Projesi Teslimi:** Ocak 2026  
 > **🚀 SaaS Lansmanı Hedefi:** Mayıs 2026  
-> **✅ İlerleme:** ~%75
+> **✅ İlerleme:** ~%85
 
 ### Tamamlanan Özellikler (✅)
 - ✅ Kullanıcı yönetimi ve authentication
@@ -629,20 +699,24 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 - ✅ Senaryo bazlı konuşma yönetimi
 - ✅ **Voice Activity Detection (VAD)**
 - ✅ **Performans metrikleri ve analiz**
+- ✅ **CallCenter modülü** (Arama yönetimi, telefon numarası yönetimi, arayan eşleştirme, istatistikler, Excel export/import)
+- ✅ **AiAgent modülü** (AI Agent CRUD, durum yönetimi, capabilities, system prompt yönetimi)
 
 ### Geliştirilmekte Olan Özellikler (🔄)
 - 🔄 IVR akış tasarımcısı
-- 🔄 Dashboard ve analitik
+- 🔄 Dashboard ve analitik (temel dashboard geliştiriliyor)
 - 🔄 Çok faktörlü kimlik doğrulama (2FA)
+- 🔄 Twilio entegrasyonu (webhook handler'lar hazır, entegrasyon devam ediyor)
 
 ### Planlanan Özellikler (📅)
 - 📅 Multi-tenant mimari
 - 📅 Abonelik sistemi
 - 📅 Dinamik menü yapılandırması
-- 📅 Çağrı yönlendirme sistemi
+- 📅 Giden aramalar (Outbound Calls)
 - 📅 DTMF algılama
-- 📅 Raporlama ve export işlemleri
+- 📅 PDF export
 - 📅 API token yönetimi
+- 📅 Gelişmiş grafik görselleştirme
 
 ---
 
@@ -670,8 +744,10 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 ## 📝 Notlar
 
 **Güncelleme Tarihi:** Aralık 2025  
-**Versiyon:** 2.5.0  
+**Versiyon:** 3.0.0  
 **Son Güncelleme:** 
+- ✅ CallCenter modülü tamamlandı (Arama yönetimi, telefon numarası yönetimi, arayan eşleştirme, istatistikler, Excel export/import)
+- ✅ AiAgent modülü tamamlandı (AI Agent CRUD, durum yönetimi, capabilities, system prompt yönetimi)
 - ✅ Gerçek zamanlı streaming AI konuşma sistemi tamamlandı
 - ✅ Pusher real-time broadcasting entegrasyonu
 - ✅ Redis queue sistemi ve Supervisor otomasyonu
